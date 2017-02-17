@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quill18_tuto", "Assembly-CSharp.csproj", "{8629459F-16EF-1D97-2AE3-6B4E98BF8043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quill18_tuto", "Assembly-CSharp-Editor-firstpass.csproj", "{0107B714-1048-87A7-43AD-DE5F03A410E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8629459F-16EF-1D97-2AE3-6B4E98BF8043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8629459F-16EF-1D97-2AE3-6B4E98BF8043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8629459F-16EF-1D97-2AE3-6B4E98BF8043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8629459F-16EF-1D97-2AE3-6B4E98BF8043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0107B714-1048-87A7-43AD-DE5F03A410E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0107B714-1048-87A7-43AD-DE5F03A410E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0107B714-1048-87A7-43AD-DE5F03A410E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0107B714-1048-87A7-43AD-DE5F03A410E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
