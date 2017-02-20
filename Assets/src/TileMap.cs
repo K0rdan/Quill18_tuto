@@ -6,6 +6,7 @@
 public class TileMap : MonoBehaviour {
 	private int MAP_WIDTH = 4;
 	private int MAP_HEIGHT = 4;
+	private float TILE_SIZE = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -13,35 +14,41 @@ public class TileMap : MonoBehaviour {
 	}
 	
 	void BuildMesh () {
+		int numTiles = MAP_WIDTH * MAP_HEIGHT;
+		int numTris = numTiles * 2;
+		int vsize_x = MAP_WIDTH + 1;
+		int vsize_y = MAP_HEIGHT + 1;
+		int numVerts = vsize_x * vsize_y;
+
 		// Generate mesh data
-		Vector3[] vertices = new Vector3[4];
-		int[] triangles = new int[6];
-		Vector3[] normals = new Vector3[4];
-		Vector2[] uv = new Vector2[4];
+		Vector3[] vertices = new Vector3[numVerts];
+		Vector3[] normals = new Vector3[numVerts];
+		Vector2[] uv = new Vector2[numVerts];
 
-		vertices[0] = new Vector3(0,0,0);
-		vertices[1] = new Vector3(1,0,0);
-		vertices[2] = new Vector3(0,0,-1);
-		vertices[3] = new Vector3(1,0,-1);
+		int[] triangles = new int[numTris * 3];
 
-		triangles[0] = 0;
-		triangles[1] = 3;
-		triangles[2] = 2;
+		for(int y=0; y < MAP_HEIGHT; y++) {
+			for(int x=0; x < MAP_WIDTH; x++) {
+				vertices[y * vsize_x + x] = new Vector3(x * TILE_SIZE, y * TILE_SIZE, 0);
+				normals[y * vsize_x + x] = Vector3.up;
+				uv[y * vsize_x + x] = new Vector2((float)x / vsize_x, (float)y / vsize_y);
+			}
+		}
 
-		triangles[3] = 0;
-		triangles[4] = 1;
-		triangles[5] = 3;		// Look Vidéo at ~ 12 / 13 min
+		for(int y=0; y < MAP_HEIGHT; y++) {
+			for(int x=0; x < MAP_WIDTH; x++) {
+				int squareIndex = y * MAP_WIDTH + x;
+				int triOffset = squareIndex * 6;
 
-		normals[0] = Vector3.up;
-		normals[1] = Vector3.up;
-		normals[2] = Vector3.up;
-		normals[3] = Vector3.up;
-
-		uv[0] = new Vector2(0,1);
-		uv[1] = new Vector2(1,1);
-		uv[2] = new Vector2(0,0);
-		uv[3] = new Vector2(1,0);
-
+				triangles[triOffset]	 = y * vsize_x + x;
+				triangles[triOffset + 1] = y * vsize_x + x + vsize_x + 1;
+				triangles[triOffset + 2] = y * vsize_x + x + vsize_x + 0;
+				
+				triangles[triOffset + 3] = y * vsize_x + x + 0;
+				triangles[triOffset + 3] = y * vsize_x + x + 1;
+				triangles[triOffset + 5] = y * vsize_x + x + vsize_x + 1;
+			}
+		}
 		//
 		Mesh mesh = new Mesh();
 		mesh.vertices = vertices;
